@@ -1,18 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_screen"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="4.0"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <ImageView
+        android:id="@+id/cam_image_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.8" />
 
-</android.support.constraint.ConstraintLayout>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/layout_DateAndMealName"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1.2"
+        android:orientation="horizontal"
+        android:weightSum="2.0"
+        tools:context=".MainActivity">
+
+        <TextView
+            android:id="@+id/textview_meal_name"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1.1"
+            android:background="@color/DarkBackground"
+            android:backgroundTint="@color/DarkBackground"
+            android:gravity="center"
+            android:text="@string/str_no_meal_time"
+            android:textColor="@color/GoldText"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/date_time_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.9"
+            android:background="@color/DarkBackground"
+            android:backgroundTint="@color/DarkBackground"
+            android:gravity="center"
+            android:text="Étkezési befizetés ellenőrző"
+            android:textColor="@color/GoldText"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/TimeProgress"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1.2"
+        android:orientation="horizontal"
+        android:weightSum="3.0"
+        tools:context=".MainActivity">
+
+        <TextView
+            android:id="@+id/text_view_start_time"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1.2"
+            android:background="@color/DarkBackground"
+            android:gravity="center"
+            android:text="7:00"
+            android:textColor="@color/GoldText" />
+
+        <ProgressBar
+            android:id="@+id/time_progress_bar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.6"
+            android:background="@color/DarkBackground"
+            android:progress="25"
+            android:progressBackgroundTint="@android:color/black"
+            android:progressTint="@color/GoldText" />
+
+        <TextView
+            android:id="@+id/text_view_end_time"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1.2"
+            android:background="@color/DarkBackground"
+            android:gravity="center"
+            android:text="11:00"
+            android:textColor="@color/GoldText" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/camera_preview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.75" />
+</LinearLayout>

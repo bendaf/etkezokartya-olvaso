@@ -5,4 +5,76 @@
     <CheckBoxPreference
         android:key="flip_view_horizontally"
         android:title="@string/flip_view_string" />
+
+    <EditTextPreference
+        android:defaultValue="@string/data_file_url_default"
+        android:key="data_file_url"
+        android:title="@string/data_file_url_title" />
+
+    <PreferenceScreen
+        android:key="meal_names_menu"
+        android:title="@string/meal_names_menu_title"
+        android:persistent="false">
+
+        <com.example.hihi.kartyaolvaso.TimePreference
+            android:defaultValue="07:00"
+            android:key="meal1_start_time"
+            android:title="@string/meal1_start_time_title"
+        />
+
+        <EditTextPreference
+            android:defaultValue="@string/meal1_default"
+            android:key="meal1_name"
+            android:title="@string/meal1_title" />
+
+        <com.example.hihi.kartyaolvaso.TimePreference
+            android:defaultValue="09:00"
+            android:key="meal2_start_time"
+            android:title="@string/meal2_start_time_title"
+            />
+
+        <EditTextPreference
+            android:defaultValue="@string/meal2_default"
+            android:key="meal2_name"
+            android:title="@string/meal2_title" />
+
+        <com.example.hihi.kartyaolvaso.TimePreference
+            android:defaultValue="11:00"
+            android:key="meal3_start_time"
+            android:title="@string/meal3_start_time_title"
+            />
+
+        <EditTextPreference
+            android:defaultValue="@string/meal3_default"
+            android:key="meal3_name"
+            android:title="@string/meal3_title" />
+
+        <com.example.hihi.kartyaolvaso.TimePreference
+            android:defaultValue="15:00"
+            android:key="meal4_start_time"
+            android:title="@string/meal4_start_time_title"
+            />
+
+        <EditTextPreference
+            android:defaultValue="@string/meal4_default"
+            android:key="meal4_name"
+            android:title="@string/meal4_title" />
+
+        <com.example.hihi.kartyaolvaso.TimePreference
+            android:defaultValue="17:00"
+            android:key="meal5_start_time"
+            android:title="@string/meal5_start_time_title"
+            />
+
+        <EditTextPreference
+            android:defaultValue="@string/meal5_default"
+            android:key="meal5_name"
+            android:title="@string/meal5_title" />
+
+        <com.example.hihi.kartyaolvaso.TimePreference
+            android:defaultValue="21:00"
+            android:key="meal6_start_time"
+            android:title="@string/meal6_start_time_title"
+            />
+    </PreferenceScreen>
 </PreferenceScreen>
