@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="72dp"
+    android:weightSum="1"
+    >
+
+    <TextView
+        android:id="@+id/textview_card_list_item"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@color/DarkBackground"
+        android:backgroundTint="@color/DarkBackground"
+        android:gravity="center"
+        android:text="Teszt"
+        android:textColor="@color/GoldText"
+        android:textSize="18sp" />
+
+</LinearLayout>

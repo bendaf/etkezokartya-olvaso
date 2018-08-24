@@ -110,8 +110,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onLongClick(View view) {
 
-                Intent settingsIntent = new Intent(MainActivity.this, SettingsActivity.class);
-                MainActivity.this.startActivity(settingsIntent);
+                Intent HirtoryIntent = new Intent(MainActivity.this, CardReadHistoryActivity.class);
+                MainActivity.this.startActivity(HirtoryIntent);
 
                 return false;
             }
