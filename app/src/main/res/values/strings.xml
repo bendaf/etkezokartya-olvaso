@@ -97,4 +97,13 @@
     <string name="meal5_start_time_title">5. étkezés kezdete</string>
     <string name="str_no_meal_time">Nincs étkezési idő</string>
     <string name="meal6_start_time_title">Étkezések vége</string>
+    <string name="feedback_customer_default">Kérem a következőt!</string>
+    <string name="fbc_valid_for_meal">Jó étvágyat!</string>
+    <string name="fbc_aldready_used">A kártya már volt használva!</string>
+    <string name="fbc_different_location">A kártya nem ehhez az intéményhez tartozik!</string>
+    <string name="fbc_in_not_in_use">A kártya nincs használatban!</string>
+    <string name="fbc_no_current_meal">Nincs befizetés a mostani étkezésre!</string>
+    <string name="fbc_invalid">Ismeretlen kártya kód!</string>
+    <string name="wait_time_after_ok_title">Érvényes kártya utáni várakozás (sec)</string>
+    <string name="wait_time_after_notok_title">Érvénytelen kártya utáni várakozás (sec)</string>
 </resources>

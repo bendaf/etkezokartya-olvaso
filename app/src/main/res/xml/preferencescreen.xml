@@ -11,6 +11,16 @@
         android:key="data_file_url"
         android:title="@string/data_file_url_title" />
 
+    <EditTextPreference
+        android:defaultValue="2"
+        android:key="wait_time_after_ok"
+        android:title="@string/wait_time_after_ok_title" />
+
+    <EditTextPreference
+        android:defaultValue="4"
+        android:key="wait_time_after_notok"
+        android:title="@string/wait_time_after_notok_title" />
+
     <PreferenceScreen
         android:key="meal_names_menu"
         android:title="@string/meal_names_menu_title"

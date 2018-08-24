@@ -5,4 +5,8 @@
     <color name="colorAccent">#FF4081</color>
     <color name="DarkBackground">#3a3a3a</color>
     <color name="GoldText">#d5c785</color>
+    <color name="OkBackground">#75985a</color>
+    <color name="OkText">#214e00</color>
+    <color name="NotOkBackground">#7a0808</color>
+    <color name="NotOkText">#eccfad</color>
 </resources>

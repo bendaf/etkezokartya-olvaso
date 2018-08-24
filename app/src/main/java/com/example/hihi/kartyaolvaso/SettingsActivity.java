@@ -172,6 +172,8 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             bindPreferenceSummaryToValue(findPreference("meal4_start_time"));
             bindPreferenceSummaryToValue(findPreference("meal5_start_time"));
             bindPreferenceSummaryToValue(findPreference("meal6_start_time"));
+            bindPreferenceSummaryToValue(findPreference("wait_time_after_notok"));
+            bindPreferenceSummaryToValue(findPreference("wait_time_after_ok"));
         }
 
         @Override
