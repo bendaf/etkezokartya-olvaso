@@ -1,4 +1,5 @@
 package com.example.hihi.kartyaolvaso;
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.widget.TextView;
 
 public class CardReadListAdapter extends RecyclerView.Adapter<CardReadListAdapter.CardListViewHolder> {
     private String[] mDataset;
+    private Context mContext;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -22,7 +24,8 @@ public class CardReadListAdapter extends RecyclerView.Adapter<CardReadListAdapte
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public CardReadListAdapter() {
+    public CardReadListAdapter(Context Env) {
+        mContext = Env;
         mDataset = new String[] {
                 "Befizetés rendben.\nKód: 05200672 Olvasva: 12:14:01",
                 "Nincs befizetés!\nKód: 05200581 Olvasva: 12:14:08",
@@ -58,6 +61,13 @@ public class CardReadListAdapter extends RecyclerView.Adapter<CardReadListAdapte
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
         holder.mTextView.setText(mDataset[position]);
+        if (mDataset[position].charAt(0) == 'B' ){
+            holder.mTextView.setBackgroundColor(mContext.getResources().getColor(R.color.OkBackground));
+            holder.mTextView.setTextColor(mContext.getResources().getColor(R.color.OkText));
+        }else{
+            holder.mTextView.setBackgroundColor(mContext.getResources().getColor(R.color.NotOkBackground));
+            holder.mTextView.setTextColor(mContext.getResources().getColor(R.color.NotOkText));
+        }
 
     }
 

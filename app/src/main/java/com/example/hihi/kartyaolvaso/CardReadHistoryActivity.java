@@ -27,7 +27,7 @@ public class CardReadHistoryActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         // specify an adapter (see also next example)
-        mAdapter = new CardReadListAdapter();
+        mAdapter = new CardReadListAdapter(this.getApplicationContext());
         mRecyclerView.setAdapter(mAdapter);
     }
 

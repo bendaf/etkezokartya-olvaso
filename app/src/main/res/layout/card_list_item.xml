@@ -12,10 +12,12 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:background="@color/DarkBackground"
-        android:backgroundTint="@color/DarkBackground"
         android:gravity="center"
         android:text="Teszt"
         android:textColor="@color/GoldText"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        />
 
 </LinearLayout>
