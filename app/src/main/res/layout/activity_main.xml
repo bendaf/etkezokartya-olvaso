@@ -114,7 +114,7 @@
             android:textColor="@color/GoldText" />
     </LinearLayout>
 
-    <FrameLayout
+    <com.example.hihi.kartyaolvaso.CameraPreview
         android:id="@+id/camera_preview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

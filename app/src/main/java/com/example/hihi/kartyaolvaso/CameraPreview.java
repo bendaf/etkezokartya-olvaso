@@ -2,6 +2,7 @@ package com.example.hihi.kartyaolvaso;
 
 import android.content.Context;
 import android.hardware.Camera;
+import android.util.AttributeSet;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -14,8 +15,11 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
     private Camera mCamera;
 
     public CameraPreview(Context context) {
-        super(context);
+        this(context, null);
+    }
 
+    public CameraPreview(Context context, AttributeSet attrs) {
+        super(context, attrs);
         // Install a SurfaceHolder.Callback so we get notified when the
         // underlying surface is created and destroyed.
         mHolder = getHolder();
@@ -33,7 +37,7 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
         try {
             mCamera.setPreviewDisplay(holder);
             mCamera.startPreview();
-        } catch (IOException e) {
+        } catch(IOException e) {
             Log.d(this.getClass().getSimpleName(), "Error setting camera preview: " + e.getMessage());
         }
     }
@@ -46,7 +50,7 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
         // If your preview can change or rotate, take care of those events here.
         // Make sure to stop the preview before resizing or reformatting it.
 
-        if (mHolder.getSurface() == null){
+        if(mHolder.getSurface() == null) {
             // preview surface does not exist
             return;
         }
@@ -54,7 +58,7 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
         // stop preview before making changes
         try {
             mCamera.stopPreview();
-        } catch (Exception e){
+        } catch(Exception e) {
             // ignore: tried to stop a non-existent preview
         }
 
@@ -66,7 +70,7 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
             mCamera.setPreviewDisplay(mHolder);
             mCamera.startPreview();
 
-        } catch (Exception e){
+        } catch(Exception e) {
             Log.d(this.getClass().getSimpleName(), "Error starting camera preview: " + e.getMessage());
         }
     }

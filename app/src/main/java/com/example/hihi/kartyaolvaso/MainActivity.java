@@ -2,31 +2,25 @@ package com.example.hihi.kartyaolvaso;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.hardware.Camera;
-import android.text.format.DateFormat;
 import android.os.Build;
+import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Random;
-import java.util.prefs.Preferences;
 
 import static com.example.hihi.kartyaolvaso.TimePreference.getHour;
 import static com.example.hihi.kartyaolvaso.TimePreference.getMinute;
-
 
 
 public class MainActivity extends AppCompatActivity {
@@ -74,9 +68,9 @@ public class MainActivity extends AppCompatActivity {
         final Handler handler = new Handler();
         final int delay = 1000; //milliseconds
 
-        handler.postDelayed(new Runnable(){
+        handler.postDelayed(new Runnable() {
             @RequiresApi(api = Build.VERSION_CODES.N)
-            public void run(){
+            public void run() {
                 if(mRunning) {
                     mDateTimeView.setText(DateFormat.format("yyyy.MMM.dd, HH:mm:ss", new Date()));
                     setActiveMeal();
@@ -90,9 +84,9 @@ public class MainActivity extends AppCompatActivity {
         final Handler CRHandler = new Handler();
         final int CRdelay = 8000; //milliseconds
 
-        CRHandler.postDelayed(new Runnable(){
+        CRHandler.postDelayed(new Runnable() {
             @RequiresApi(api = Build.VERSION_CODES.N)
-            public void run(){
+            public void run() {
                 if(mRunning) {
                     onNewCardRead(0);
                 }
@@ -101,9 +95,10 @@ public class MainActivity extends AppCompatActivity {
         }, delay);
         //------------
 
-        mPreview = new CameraPreview(this);
-        FrameLayout preview = (FrameLayout) findViewById(R.id.camera_preview);
-        preview.addView(mPreview);
+        mPreview = findViewById(R.id.camera_preview);
+//        mPreview.setLayoutParams(new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT));
+//        FrameLayout preview = (FrameLayout) findViewById(R.id.camera_preview);
+//        preview.addView(mPreview);
 
         root.setLongClickable(true);
         root.setOnLongClickListener(new View.OnLongClickListener() {
@@ -132,24 +127,24 @@ public class MainActivity extends AppCompatActivity {
         mRunning = true;
         if(safeCameraOpen(Camera.CameraInfo.CAMERA_FACING_BACK)) {
             mPreview.setmCamera(mCamera);
-            try{
+            try {
                 takeAndDisplayPicture();
-            }catch(Exception e){
+            } catch(Exception e) {
                 Log.d("MainActivity", "takeAndDisplayPicture failed");
                 e.printStackTrace();
             }
-            }else {
+        } else {
             Log.d(MainActivity.class.getSimpleName(), "camera open failed");
         }
 
     }
 
     private boolean takeAndDisplayPicture() {
-       mCamera.takePicture(null, null, new Camera.PictureCallback() {
+        mCamera.takePicture(null, null, new Camera.PictureCallback() {
             @Override
             public void onPictureTaken(byte[] data, Camera camera) {
-                Log.d("MainActivity","OnPictureTaken started");
-                if (data != null) {
+                Log.d("MainActivity", "OnPictureTaken started");
+                if(data != null) {
                     Log.d("takeAndDisplayPicture", "data is not null");
 //                    Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
 //                    if (bitmap != null) {
@@ -157,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
 //                        mImageView.setImageBitmap(bitmap);
 //                    }
                 }
-           }
+            }
         });
         return false;
     }
@@ -171,7 +166,7 @@ public class MainActivity extends AppCompatActivity {
             mCamera = Camera.open(id);
             Log.d(MainActivity.class.getSimpleName(), "camera open result:" + ((mCamera != null) ? "success" : "fail"));
             qOpened = (mCamera != null);
-        } catch (Exception e) {
+        } catch(Exception e) {
             Log.e(getString(R.string.app_name), "failed to open Camera");
             e.printStackTrace();
         }
@@ -180,41 +175,41 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void releaseCamera() {
-        if (mCamera != null) {
+        if(mCamera != null) {
             mCamera.release();
             mCamera = null;
         }
     }
 
-    private void setActiveMeal(){
+    private void setActiveMeal() {
         Calendar rightNow = Calendar.getInstance();
-        int MinuteOfDay = rightNow.get(Calendar.HOUR_OF_DAY) * 60 + rightNow.get(Calendar.MINUTE);
+        int MinuteOfDay = rightNow.get(Calendar.HOUR_OF_DAY)*60 + rightNow.get(Calendar.MINUTE);
 
         //Log.d("setActiveMeal:", "MinuteOfDay = " + String.valueOf(MinuteOfDay));
         int NextActiveMeal = 0;
         String EndTime = "00:00";
         String StartTime = "00:00";
 
-        for(int MealInx =0; MealInx < 6; MealInx++) {
+        for(int MealInx = 0; MealInx < 6; MealInx++) {
             StartTime = EndTime;
-            EndTime = mPreferences.getString("meal" + String.valueOf(MealInx+1) + "_start_time", "23:59");
+            EndTime = mPreferences.getString("meal" + String.valueOf(MealInx + 1) + "_start_time", "23:59");
             //Log.d("setActiveMeal:", StartTime + " - " + EndTime + "  iteration:(" + String.valueOf(MealInx) + ")");
-            int MealStartMinutes = 60 * getHour(EndTime) + getMinute(EndTime);
+            int MealStartMinutes = 60*getHour(EndTime) + getMinute(EndTime);
             //Log.d("setActiveMeal:","MealStartMinutes = " + String.valueOf(MealStartMinutes));
-            if (MinuteOfDay < MealStartMinutes) {
+            if(MinuteOfDay < MealStartMinutes) {
                 NextActiveMeal = MealInx;
                 //Log.d("setActiveMeal:", "break at " + String.valueOf(MealInx));
                 break;
             }
         }
-        if (NextActiveMeal == 0){
+        if(NextActiveMeal == 0) {
             StartTime = mPreferences.getString("meal6_start_time", "23:59");
             EndTime = mPreferences.getString("meal1_start_time", "23:59");
         }
         //Log.d("setActiveMeal:", StartTime + " - " + EndTime + "  (" + String.valueOf(NextActiveMeal) + ")");
 
 
-        if (mActiveMeal != NextActiveMeal){
+        if(mActiveMeal != NextActiveMeal) {
             // change static parts of the display
             mTimeProgressBarMin.setText(StartTime);
             mTimeProgressBarMax.setText(EndTime);
@@ -222,25 +217,25 @@ public class MainActivity extends AppCompatActivity {
         }
 
         // change progress bar
-        int StartMinutes = 60 * getHour(StartTime) + getMinute(StartTime);
-        int EndMinutes = 60 * getHour(EndTime) + getMinute(EndTime);
-        if (StartMinutes > EndMinutes){
+        int StartMinutes = 60*getHour(StartTime) + getMinute(StartTime);
+        int EndMinutes = 60*getHour(EndTime) + getMinute(EndTime);
+        if(StartMinutes > EndMinutes) {
             EndMinutes += 24*60;
         }
-        if (StartMinutes > MinuteOfDay){
+        if(StartMinutes > MinuteOfDay) {
             MinuteOfDay += 24*60;
         }
-        if (EndMinutes == StartMinutes) {
+        if(EndMinutes == StartMinutes) {
             mTimeProgressbar.setProgress(100);
-        }else{
-            mTimeProgressbar.setProgress(100*(MinuteOfDay-StartMinutes)/(EndMinutes-StartMinutes));
+        } else {
+            mTimeProgressbar.setProgress(100*(MinuteOfDay - StartMinutes)/(EndMinutes - StartMinutes));
         }
 
     }
 
-    public void onNewCardRead(int Code){
+    public void onNewCardRead(int Code) {
         int Delay = Integer.parseInt(mPreferences.getString("wait_time_after_notok", "5"));
-        switch(CheckCardValidity(mActiveMeal, Code)){
+        switch(CheckCardValidity(mActiveMeal, Code)) {
             case CARD_VALID_FOR_CURRENT_MEAL:
                 mFeedbackCustomer.setText(R.string.fbc_valid_for_meal);
                 mFeedbackCustomer.setBackgroundColor(getResources().getColor(R.color.OkBackground));
@@ -283,7 +278,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void setFeedbackDefault(){
+    private void setFeedbackDefault() {
         mFeedbackCustomer.setText(R.string.feedback_customer_default);
         mFeedbackCustomer.setBackgroundColor(getResources().getColor(R.color.DarkBackground));
         mFeedbackCustomer.setTextColor(getResources().getColor(R.color.GoldText));
@@ -293,7 +288,7 @@ public class MainActivity extends AppCompatActivity {
     private int CheckCardValidity(int mActiveMeal, int code) {
         // mock code:
         Random r = new Random();
-        return Math.max(r.nextInt(10)-5, 0);
+        return Math.max(r.nextInt(10) - 5, 0);
     }
 
 
