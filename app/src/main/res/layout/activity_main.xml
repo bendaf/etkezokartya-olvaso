@@ -1,18 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout android:id="@+id/main_screen"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main_screen"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/black"
     android:orientation="vertical"
     android:weightSum="4.0"
-    android:background="@android:color/black"
     tools:context=".MainActivity">
 
     <TextView
         android:id="@+id/textview_feedback_customer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginBottom="4dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
         android:layout_weight="0.8"
         android:background="@color/DarkBackground"
         android:gravity="center"
@@ -20,25 +24,20 @@
         android:text="@string/feedback_customer_default"
         android:textColor="@color/GoldText"
         android:textSize="24sp"
-        android:textStyle="bold"
-        android:layout_marginTop="8dp"
+        android:textStyle="bold" />
+
+    <LinearLayout android:id="@+id/layout_DateAndMealName"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_marginBottom="4dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        />
-
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/layout_DateAndMealName"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_marginTop="4dp"
         android:layout_weight="1.2"
         android:orientation="horizontal"
         android:weightSum="2.0"
-        android:layout_marginTop="4dp"
-        android:layout_marginBottom="4dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
         tools:context=".MainActivity">
 
         <TextView
@@ -68,18 +67,18 @@
     </LinearLayout>
 
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout android:id="@+id/TimeProgress"
+        xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/TimeProgress"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1.2"
-        android:orientation="horizontal"
-        android:weightSum="3.0"
-        android:layout_marginTop="4dp"
         android:layout_marginBottom="4dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
+        android:layout_marginTop="4dp"
+        android:layout_weight="1.2"
+        android:orientation="horizontal"
+        android:weightSum="3.0"
         tools:context=".MainActivity">
 
         <TextView
@@ -118,10 +117,9 @@
         android:id="@+id/camera_preview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="0.75"
-        android:layout_marginTop="4dp"
         android:layout_marginBottom="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        />
+        android:layout_marginTop="4dp"
+        android:layout_weight="0.75" />
 </LinearLayout>

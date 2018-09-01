@@ -2,6 +2,8 @@ package com.example.hihi.kartyaolvaso;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.hardware.Camera;
 import android.os.Build;
 import android.os.Bundle;
@@ -25,6 +27,7 @@ import static com.example.hihi.kartyaolvaso.TimePreference.getMinute;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final String TAG = MainActivity.class.getSimpleName();
     private Camera mCamera;
     private CameraPreview mPreview;
     private TextView mFeedbackCustomer;
@@ -127,12 +130,21 @@ public class MainActivity extends AppCompatActivity {
         mRunning = true;
         if(safeCameraOpen(Camera.CameraInfo.CAMERA_FACING_BACK)) {
             mPreview.setmCamera(mCamera);
-            try {
-                takeAndDisplayPicture();
-            } catch(Exception e) {
-                Log.d("MainActivity", "takeAndDisplayPicture failed");
-                e.printStackTrace();
-            }
+            mCamera.setPreviewCallback(new Camera.PreviewCallback() {
+                @Override public void onPreviewFrame(byte[] bytes, Camera camera) {
+//                    Log.d(TAG, "onPreviewFrame: ");
+                }
+            });
+            new Handler().postDelayed(new Runnable() {
+                @Override public void run() {
+                    try {
+                        takeAndDisplayPicture();
+                    } catch(Exception e) {
+                        Log.d(TAG, "takeAndDisplayPicture failed");
+                        e.printStackTrace();
+                    }
+                }
+            }, 1000);
         } else {
             Log.d(MainActivity.class.getSimpleName(), "camera open failed");
         }
@@ -146,11 +158,11 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("MainActivity", "OnPictureTaken started");
                 if(data != null) {
                     Log.d("takeAndDisplayPicture", "data is not null");
-//                    Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
-//                    if (bitmap != null) {
-//                        Log.d("takeAndDisplayPicture", "bitmap is not null");
+                    Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
+                    if(bitmap != null) {
+                        Log.d("takeAndDisplayPicture", "bitmap is not null");
 //                        mImageView.setImageBitmap(bitmap);
-//                    }
+                    }
                 }
             }
         });
